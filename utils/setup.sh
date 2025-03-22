@@ -23,6 +23,11 @@ BG_WHITE="\033[47m"
 
 echo -e "${BLUE}Setting up the system...${NC}"
 
+# Install curl
+echo -e "${CYAN}Installing curl...${NC}"
+sudo apt update -y
+sudo apt install -y curl
+
 # Add repositories
 echo -e "${YELLOW}Adding VirtualBox repository...${NC}"
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list
@@ -43,3 +48,9 @@ sudo apt install -y "virtualbox-7.1"
 # Install Vagrant
 echo -e "${GREEN}Installing Vagrant...${NC}"
 sudo apt install -y vagrant
+
+# Install kubectl
+echo -e "${GREEN}Installing kubectl...${NC}"
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+rm kubectl
