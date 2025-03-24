@@ -11,3 +11,4 @@ done
 cp $NODE_TOKEN /vagrant/
 
 cp /etc/rancher/k3s/k3s.yaml /vagrant/k3s.yaml
+sed -i 's/server: https:\/\/127.0.0.1:6443/server: https:\/\/192.168.56.110:6443/' /vagrant/k3s.yaml
