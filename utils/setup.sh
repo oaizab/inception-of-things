@@ -54,3 +54,10 @@ echo -e "${GREEN}Installing kubectl...${NC}"
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 rm kubectl
+
+# Add host entries
+echo -e "${GREEN}Adding host entries to /etc/hosts...${NC}"
+echo "# Host entries for the Kubernetes cluster" | sudo tee -a /etc/hosts
+echo "192.168.56.110 app1.com" | sudo tee -a /etc/hosts
+echo "192.168.56.110 app2.com" | sudo tee -a /etc/hosts
+echo "192.168.56.110 app3.com" | sudo tee -a /etc/hosts
