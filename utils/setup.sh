@@ -61,3 +61,17 @@ echo "# Host entries for the Kubernetes cluster" | sudo tee -a /etc/hosts
 echo "192.168.56.110 app1.com" | sudo tee -a /etc/hosts
 echo "192.168.56.110 app2.com" | sudo tee -a /etc/hosts
 echo "192.168.56.110 app3.com" | sudo tee -a /etc/hosts
+
+# Install Docker
+echo -e "${GREEN}Installing Docker...${NC}"
+sudo apt install docker.io -y
+
+# Install k3d
+echo -e "${GREEN}Installing k3d...${NC}"
+curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+
+# Install ArgoCD
+echo -e "${GREEN}Installing ArgoCD...${NC}"
+sudo curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
+rm argocd-linux-amd64
